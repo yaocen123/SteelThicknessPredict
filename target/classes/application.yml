@@ -10,5 +10,9 @@ spring:
   mybatis:
     mapper-locations: classpath:mappers/*.xml
 server:
-  port: 8085
+  port: 8080
 
+flask:
+  api:
+    url: http://localhost:5000/predict
+    url2: http://localhost:5001

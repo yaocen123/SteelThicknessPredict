@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>钢板厚度预测系统 - 首页示例二</title>
+
+    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <span class="clear">
+                                    <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong></span>
+                                    <span class="text-muted text-xs block">超级管理员 <b class="caret"></b></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="form_avatar.html">修改头像</a></li>
+                                <li><a href="profile.html">个人资料</a></li>
+                                <li><a href="contacts.html">联系我们</a></li>
+                                <li><a href="mailbox.html">信箱</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">安全退出</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">H+</div>
+                    </li>
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">温度预测</span> <span
+                                class="fa arrow"></span></a>
+                    </li>
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">电压预测</span> <span
+                              class="fa arrow"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="index_2.html#"><i
+                                class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                    id="top-search">
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li><span class="m-r-sm text-muted welcome-message"><a href="index.html" title="返回首页"><i
+                                        class="fa fa-home"></i></a>欢迎使用钢板预测系统</span></li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> 退出
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+<!-- 预测表单 -->
+<div class="container">
+    <h2 class="text-center my-4">钢板厚度预测</h2>
+    <form id="prediction-form">
+        <div class="row mb-3">
+            <div class="col-md-2 form-group">
+                <label for="constValue">常数值 (constValue)</label>
+                <input type="number" class="form-control" id="constValue" required step="0.0001" value="1">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="averageThickness">平均厚度 (A T)</label>
+                <input type="number" class="form-control" id="averageThickness" required step="0.0001" value="35.0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="endStartTemp">起始温度 (E S T)</label>
+                <input type="number" class="form-control" id="endStartTemp" required step="0.0001" value="750">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="carbon">碳含量 (Carbon)</label>
+                <input type="number" class="form-control" id="carbon" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="manganese">锰含量 (Manganese)</label>
+                <input type="number" class="form-control" id="manganese" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="phosphorus">磷含量 (Phosphorus)</label>
+                <input type="number" class="form-control" id="phosphorus" required step="0.0001" value="0">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2 form-group">
+                <label for="sulphur">硫含量 (Sulphur)</label>
+                <input type="number" class="form-control" id="sulphur" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="silicon">硅含量 (Silicon)</label>
+                <input type="number" class="form-control" id="silicon" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="copper">铜含量 (Copper)</label>
+                <input type="number" class="form-control" id="copper" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="vanadium">钒含量 (Vanadium)</label>
+                <input type="number" class="form-control" id="vanadium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="columbium">铌含量 (Columbium)</label>
+                <input type="number" class="form-control" id="columbium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="chromium">铬含量 (Chromium)</label>
+                <input type="number" class="form-control" id="chromium" required step="0.0001" value="0">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2 form-group">
+                <label for="nickel">镍含量 (Nickel)</label>
+                <input type="number" class="form-control" id="nickel" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="molybdenum">钼含量 (Molybdenum)</label>
+                <input type="number" class="form-control" id="molybdenum" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="tin">锡含量 (Tin)</label>
+                <input type="number" class="form-control" id="tin" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="nitrogen">氮含量 (Nitrogen)</label>
+                <input type="number" class="form-control" id="nitrogen" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="boron">硼含量 (Boron)</label>
+                <input type="number" class="form-control" id="boron" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="aluminiumTotal">铝含量 (Aluminium Total)</label>
+                <input type="number" class="form-control" id="aluminiumTotal" required step="0.0001" value="0">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2 form-group">
+                <label for="titanium">钛含量 (Titanium)</label>
+                <input type="number" class="form-control" id="titanium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="calcium">钙含量 (Calcium)</label>
+                <input type="number" class="form-control" id="calcium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="lead">铅含量 (Lead)</label>
+                <input type="number" class="form-control" id="lead" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="aluminiumSoluable">可溶铝含量 (Aluminium)</label>
+                <input type="number" class="form-control" id="aluminiumSoluable" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="antimony">锑含量 (Antimony)</label>
+                <input type="number" class="form-control" id="antimony" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="zinc">锌含量 (Zinc)</label>
+                <input type="number" class="form-control" id="zinc" required step="0.0001" value="0">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2 form-group">
+                <label for="arsenic">砷含量 (Arsenic)</label>
+                <input type="number" class="form-control" id="arsenic" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="cobalt">钴含量 (Cobalt)</label>
+                <input type="number" class="form-control" id="cobalt" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="magnesium">镁含量 (Magnesium)</label>
+                <input type="number" class="form-control" id="magnesium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="zirconium">锆含量 (Zirconium)</label>
+                <input type="number" class="form-control" id="zirconium" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="tungsten">钨含量 (Tungsten)</label>
+                <input type="number" class="form-control" id="tungsten" required step="0.0001" value="0">
+            </div>
+            <div class="col-md-2 form-group">
+                <label for="tantalum">钽含量 (Tantalum)</label>
+                <input type="number" class="form-control" id="tantalum" required step="0.0001" value="0">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">提交预测</button>
+    </form>
+
+    <h3 class="mt-5">预测结果:</h3>
+    <p id="prediction-result"></p>
+</div>
+
+<!-- 预测温度范围按钮 -->
+<div class="container mt-5">
+    <h3 class="text-center">温度范围预测</h3>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label for="startTemp">起始温度 (startTemp)</label>
+            <input type="number" class="form-control" id="startTemp" required step="0.0001" value="0">
+        </div>
+        <div class="col-md-2 form-group">
+            <label for="endTemp">结束温度 (endTemp)</label>
+            <input type="number" class="form-control" id="endTemp" required step="0.0001" value="0">
+        </div>
+        <div class="col-md-2 form-group d-flex align-items-end">
+            <!-- 调整按钮颜色和对齐 -->
+            <button type="button" class="btn btn-primary w-100" id="predict-temperature-btn">预测温度范围</button>
+        </div>
+    </div>
+
+    <h3 class="mt-5">预测温度范围图表:</h3>
+    <canvas id="predictionChart1" width="400" height="200"></canvas>
+</div>
+
+
+
+
+    <!-- 主要脚本 -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js?v=3.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // 表单提交事件处理
+        document.getElementById('prediction-form').addEventListener('submit', function (event) {
+            event.preventDefault();  // 阻止表单的默认提交行为
+
+            // 获取表单数据
+            const predictionInput = {
+                constValue: parseFloat(document.getElementById('constValue').value),
+                averageThickness: parseFloat(document.getElementById('averageThickness').value),
+                endStartTemp: parseFloat(document.getElementById('endStartTemp').value),
+                carbon: parseFloat(document.getElementById('carbon').value),
+                manganese: parseFloat(document.getElementById('manganese').value),
+                phosphorus: parseFloat(document.getElementById('phosphorus').value),
+                sulphur: parseFloat(document.getElementById('sulphur').value),
+                silicon: parseFloat(document.getElementById('silicon').value),
+                copper: parseFloat(document.getElementById('copper').value),
+                vanadium: parseFloat(document.getElementById('vanadium').value),
+                columbium: parseFloat(document.getElementById('columbium').value),
+                chromium: parseFloat(document.getElementById('chromium').value),
+                nickel: parseFloat(document.getElementById('nickel').value),
+                molybdenum: parseFloat(document.getElementById('molybdenum').value),
+                tin: parseFloat(document.getElementById('tin').value),
+                nitrogen: parseFloat(document.getElementById('nitrogen').value),
+                boron: parseFloat(document.getElementById('boron').value),
+                aluminiumTotal: parseFloat(document.getElementById('aluminiumTotal').value),
+                titanium: parseFloat(document.getElementById('titanium').value),
+                calcium: parseFloat(document.getElementById('calcium').value),
+                lead: parseFloat(document.getElementById('lead').value),
+                aluminiumSoluable: parseFloat(document.getElementById('aluminiumSoluable').value),
+                antimony: parseFloat(document.getElementById('antimony').value),
+                zinc: parseFloat(document.getElementById('zinc').value),
+                arsenic: parseFloat(document.getElementById('arsenic').value),
+                cobalt: parseFloat(document.getElementById('cobalt').value),
+                magnesium: parseFloat(document.getElementById('magnesium').value),
+                zirconium: parseFloat(document.getElementById('zirconium').value),
+                tungsten: parseFloat(document.getElementById('tungsten').value),
+                tantalum: parseFloat(document.getElementById('tantalum').value)
+            };
+
+            // 使用 Fetch API 调用后端的预测接口
+            fetch('http://127.0.0.1:8080/prediction/predictColdThickness', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(predictionInput)
+            })
+                .then(response => response.json())  // 假设后端返回的是一个 JSON 响应
+                .then(data => {
+                    if (data) {
+                        // 显示预测结果
+                        document.getElementById('prediction-result').innerText = `预测冷态厚度: ${data}`;
+                    } else {
+                        document.getElementById('prediction-result').innerText = '预测失败，请稍后重试。';
+                    }
+                })
+                .catch(error => {
+                    console.error('请求失败:', error);
+                    document.getElementById('predict ion-result').innerText = '请求失败，请稍后再试。';
+                });
+        });
+
+        document.getElementById('predict-temperature-btn').addEventListener('click', function () {
+    // 获取表单数据
+    const predictionInput = {
+        constValue: parseFloat(document.getElementById('constValue').value),
+        averageThickness: parseFloat(document.getElementById('averageThickness').value),
+        carbon: parseFloat(document.getElementById('carbon').value),
+        manganese: parseFloat(document.getElementById('manganese').value),
+        phosphorus: parseFloat(document.getElementById('phosphorus').value),
+        sulphur: parseFloat(document.getElementById('sulphur').value),
+        silicon: parseFloat(document.getElementById('silicon').value),
+        copper: parseFloat(document.getElementById('copper').value),
+        vanadium: parseFloat(document.getElementById('vanadium').value),
+        columbium: parseFloat(document.getElementById('columbium').value),
+        chromium: parseFloat(document.getElementById('chromium').value),
+        nickel: parseFloat(document.getElementById('nickel').value),
+        molybdenum: parseFloat(document.getElementById('molybdenum').value),
+        tin: parseFloat(document.getElementById('tin').value),
+        nitrogen: parseFloat(document.getElementById('nitrogen').value),
+        boron: parseFloat(document.getElementById('boron').value),
+        aluminiumTotal: parseFloat(document.getElementById('aluminiumTotal').value),
+        titanium: parseFloat(document.getElementById('titanium').value),
+        calcium: parseFloat(document.getElementById('calcium').value),
+        lead: parseFloat(document.getElementById('lead').value),
+        aluminiumSoluable: parseFloat(document.getElementById('aluminiumSoluable').value),
+        antimony: parseFloat(document.getElementById('antimony').value),
+        zinc: parseFloat(document.getElementById('zinc').value),
+        arsenic: parseFloat(document.getElementById('arsenic').value),
+        cobalt: parseFloat(document.getElementById('cobalt').value),
+        magnesium: parseFloat(document.getElementById('magnesium').value),
+        zirconium: parseFloat(document.getElementById('zirconium').value),
+        tungsten: parseFloat(document.getElementById('tungsten').value),
+        tantalum: parseFloat(document.getElementById('tantalum').value),
+        startTemp: parseFloat(document.getElementById('startTemp').value),
+        endTemp: parseFloat(document.getElementById('endTemp').value)
+    };
+
+    // 发送请求到后端并处理返回数据
+            fetch('http://localhost:8080/predict/predictTemperatureRangeForImg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(predictionInput)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // 获取返回的温度和预测值数据
+                    const temperatures = data.temperatures;
+                    const predictedValues = data.predictedValues;
+
+                    // 绘制图表
+                    const ctx = document.getElementById('predictionChart1').getContext('2d');
+                    const predictionChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: temperatures,  // 温度作为x轴
+                            datasets: [{
+                                label: 'Predicted Thickness',
+                                data: predictedValues,  // 预测结果作为y轴
+                                borderColor: 'rgb(75, 192, 192)',
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Temperature (°C)'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Predicted Thickness'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
