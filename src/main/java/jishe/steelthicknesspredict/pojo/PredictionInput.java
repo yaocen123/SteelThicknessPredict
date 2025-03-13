@@ -2,8 +2,15 @@ package jishe.steelthicknesspredict.pojo;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "prediction_input")
 public class PredictionInput {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private double constValue;
     private double averageThickness;
@@ -25,7 +32,10 @@ public class PredictionInput {
     private double aluminiumTotal;
     private double titanium;
     private double calcium;
+
+    @Column(name = "`lead`") // 用反引号转义 MySQL 保留关键字
     private double lead;
+
     private double aluminiumSoluable;
     private double antimony;
     private double zinc;
@@ -35,5 +45,4 @@ public class PredictionInput {
     private double zirconium;
     private double tungsten;
     private double tantalum;
-
 }

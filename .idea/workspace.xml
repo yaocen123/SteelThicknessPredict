@@ -5,25 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6067b9fe-2f51-4207-a2e1-d0df43763aeb" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/TemperatureRangeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/VoltageRangeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/controller/PredictionDataController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/repository/PredictionInputRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/repository/PredictionRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/repository/TemperatureRangeRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/repository/VoltageRangeRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/prediction_input.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4e840c5-658d-48d5-a1de-32846bd611d0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a4e840c5-658d-48d5-a1de-32846bd611d0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/controller/ImgPredictionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/controller/PredictionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/controller/PredictionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/ImgPredictionInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/service/ImgPredictionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/PredictionInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/PredictionInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/PredictionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/PredictionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/TemperatureRangeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/TemperatureRangeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/VoltageRangeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/pojo/VoltageRangeRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/service/PredictionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/service/PredictionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/service/VoltagePredictionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jishe/steelthicknesspredict/service/VoltagePredictionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/controller/ImgPredictionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/voltage_predictions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/controller/PredictionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/controller/PredictionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/ImgPredictionInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/service/ImgPredictionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/PredictionInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/PredictionInput.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/PredictionRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/PredictionRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/TemperatureRangeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/TemperatureRangeRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/VoltageRangeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/pojo/VoltageRangeRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/service/PredictionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/service/PredictionService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/service/VoltagePredictionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jishe/steelthicknesspredict/service/VoltagePredictionService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/art-design-pro" beforeDir="false" afterPath="$PROJECT_DIR$/vue/art-design-pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/art-design-pro/.auto-import.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue/art-design-pro/.auto-import.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/art-design-pro/src/types/auto-imports.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vue/art-design-pro/src/types/auto-imports.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/art-design-pro/src/types/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vue/art-design-pro/src/types/components.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,10 +125,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="prediction_data.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
-      <script-file value="$PROJECT_DIR$/src/main/resources/sql/prediction_data.sql" />
+    <configuration name="prediction_input.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/main/resources/sql/prediction_input.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="a4e840c5-658d-48d5-a1de-32846bd611d0" />
       <method v="2" />
     </configuration>
   </component>
@@ -149,6 +158,8 @@
       <workItem from="1740130399927" duration="8143000" />
       <workItem from="1740401446190" duration="1824000" />
       <workItem from="1741505489425" duration="9181000" />
+      <workItem from="1741780709476" duration="1872000" />
+      <workItem from="1741827934967" duration="5334000" />
     </task>
     <servers />
   </component>

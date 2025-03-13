@@ -2,9 +2,20 @@ package jishe.steelthicknesspredict.pojo;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "voltage_range_request")
 public class VoltageRangeRequest {
-    private PredictionRequest request;    // 原有的输入参数
-    private double startVoltage;          // 新增：起始电压
-    private double endVoltage;            // 新增：结束电压
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // 保存原始的预测请求数据
+    @OneToOne(cascade = CascadeType.ALL)
+    private PredictionRequest request;
+
+    private double startVoltage;
+    private double endVoltage;
 }

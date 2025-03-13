@@ -2,9 +2,20 @@ package jishe.steelthicknesspredict.pojo;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "temperature_range_request")
 public class TemperatureRangeRequest {
-    private PredictionInput input;        // 原有的输入参数
-    private double startTemperature;     // 新增：起始温度
-    private double endTemperature;       // 新增：结束温度
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // 保存原始的预测输入数据
+    @OneToOne(cascade = CascadeType.ALL)
+    private PredictionInput input;
+
+    private double startTemperature;
+    private double endTemperature;
 }

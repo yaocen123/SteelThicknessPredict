@@ -2,6 +2,9 @@ package jishe.steelthicknesspredict.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import jishe.steelthicknesspredict.pojo.PredictionInput;
+import jishe.steelthicknesspredict.pojo.TemperatureRangeRequest;
+import jishe.steelthicknesspredict.repository.PredictionInputRepository;
+import jishe.steelthicknesspredict.repository.TemperatureRangeRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -16,18 +19,25 @@ public class PredictionService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private PredictionInputRepository predictionInputRepository;
+
+    @Autowired
+    private TemperatureRangeRequestRepository temperatureRangeRequestRepository;
+
     // Flask API URL
     private static final String FLASK_API_URL = "http://127.0.0.1:5000/predict";
 
     public double predictColdThickness(PredictionInput input) {
-        // 将输入数据转换为 JSON 格式
+        // 保存输入数据到数据库（只保存输入数据）
+        predictionInputRepository.save(input);
+
+        // 将输入数据转换为 JSON 格式并调用 Flask API
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // 创建请求体
         HttpEntity<PredictionInput> requestEntity = new HttpEntity<>(input, headers);
 
-        // 发送 POST 请求到 Flask API
         ResponseEntity<JsonNode> response = restTemplate.exchange(
                 FLASK_API_URL,
                 HttpMethod.POST,
@@ -35,7 +45,6 @@ public class PredictionService {
                 JsonNode.class
         );
 
-        // 获取返回的预测冷态厚度
         JsonNode responseBody = response.getBody();
         if (responseBody != null) {
             return responseBody.get("predicted_cold_thickness").asDouble();
@@ -44,40 +53,44 @@ public class PredictionService {
     }
 
     /**
-     * 在指定的温度区间内（步长 0.01）预测冷态厚度。
-     * 这里假设 PredictionInput 中的 endStartTemp 字段用于表示温度。
-     *
-     * @param input          原始的预测请求参数对象
-     * @param startTemperature 温度区间起始值
-     * @param endTemperature   温度区间结束值
-     * @return 返回一个 Map，key 为温度值，value 为该温度下预测的冷态厚度
+     * 在指定温度区间（步长 0.01）内预测，并保存温度区间请求数据
      */
-    public Map<Double, Double> predictColdThicknessInTemperatureRange(PredictionInput input, double startTemperature, double endTemperature) {
-        Map<Double, Double> predictions = new LinkedHashMap<>();
+    public Map<Double, Map<String, Double>> predictColdThicknessInTemperatureRange(PredictionInput input, double startTemperature, double endTemperature) {
+        // 构造 TemperatureRangeRequest 对象
+        TemperatureRangeRequest trRequest = new TemperatureRangeRequest();
+        trRequest.setInput(input);
+        trRequest.setStartTemperature(startTemperature);
+        trRequest.setEndTemperature(endTemperature);
+        // 保存温度区间请求到数据库
+        temperatureRangeRequestRepository.save(trRequest);
 
-        // 保存原始温度，便于后续恢复
+        Map<Double, Map<String, Double>> predictions = new LinkedHashMap<>();
+
+        // 保存原始温度值，便于恢复
         double originalTemperature = input.getEndStartTemp();
 
-        // 如果起始温度大于结束温度，交换两者
         if (startTemperature > endTemperature) {
             double temp = startTemperature;
             startTemperature = endTemperature;
             endTemperature = temp;
         }
 
-        // 以 0.01 的步长遍历温度区间，注意防止浮点误差
-        for (double temp = startTemperature; temp <= endTemperature + 1e-8; temp = Math.round((temp + 0.01) * 100.0) / 100.0) {
-            // 设置当前温度值
+        for (double temp = startTemperature; temp <= endTemperature + 1e-8;
+             temp = Math.round((temp + 0.01) * 100.0) / 100.0) {
             input.setEndStartTemp(temp);
-            // 调用预测方法获取预测结果
             double predictedThickness = predictColdThickness(input);
-            // 保存结果到 Map 中
-            predictions.put(temp, predictedThickness);
+
+            // 创建一个新的 Map 存储 prediction
+            Map<String, Double> prediction = new LinkedHashMap<>();
+            prediction.put("prediction", predictedThickness);
+
+            // 将当前温度和对应的 prediction 存入 predictions Map
+            predictions.put(temp, prediction);
         }
 
-        // 恢复原始温度值
         input.setEndStartTemp(originalTemperature);
 
         return predictions;
     }
+
 }

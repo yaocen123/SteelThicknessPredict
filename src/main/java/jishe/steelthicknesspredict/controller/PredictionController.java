@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
@@ -26,9 +27,16 @@ public class PredictionController {
 
     @CrossOrigin(origins = "*")  // 允许特定源
     @PostMapping("/predictColdThickness")
-    public double predictColdThickness(@RequestBody PredictionInput input) {
-        return predictionService.predictColdThickness(input);
+    public Map<String, Double> predictColdThickness(@RequestBody PredictionInput input) {
+        double predictedThickness = predictionService.predictColdThickness(input);
+
+        // 将预测结果包装成带有 "prediction" 键的 Map
+        Map<String, Double> response = new LinkedHashMap<>();
+        response.put("prediction", predictedThickness);
+
+        return response;
     }
+
 
     @PostMapping("/voltagepredict")
     public JsonNode predictVoltage(@RequestBody PredictionRequest request) {
@@ -36,15 +44,19 @@ public class PredictionController {
     }
 
     @PostMapping("/temppredictRange")
-    public ResponseEntity<Map<Double, Double>> predictTemperatureRange(
+    public ResponseEntity<Map<Double, Map<String, Double>>> predictTemperatureRange(
             @RequestBody TemperatureRangeRequest rangeRequest) { // 使用新的请求体类
-        Map<Double, Double> predictions = predictionService.predictColdThicknessInTemperatureRange(
+        // 获取预测结果
+        Map<Double, Map<String, Double>> predictions = predictionService.predictColdThicknessInTemperatureRange(
                 rangeRequest.getInput(),
                 rangeRequest.getStartTemperature(),
                 rangeRequest.getEndTemperature()
         );
+
+        // 返回预测结果
         return ResponseEntity.ok(predictions);
     }
+
 
     @PostMapping("/volpredictRange")
     public ResponseEntity<Map<Double, JsonNode>> predictVoltageRange(

@@ -3,8 +3,15 @@ package jishe.steelthicknesspredict.pojo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "prediction_request")
 public class PredictionRequest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @JsonProperty("Length_From_Head")
     private double lengthFromHead;
@@ -64,6 +71,7 @@ public class PredictionRequest {
     private double calcium;
 
     @JsonProperty("Lead")
+    @Column(name = "`lead`")
     private double lead;
 
     @JsonProperty("Aluminium_Soluable")
